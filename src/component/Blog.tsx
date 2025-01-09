@@ -1,32 +1,33 @@
-type recipeInfo = {
+import IngridientList from "./IngridientList.tsx";
+
+type RecipeInfoProps = {
+    className: string
     name: string
     image: string
-    ingridients: string[]
+    ingredients: string[]
     instruction: string
     quote: string
     customer: string
 }
 
-function PrintRecipe (recipe: recipeInfo){
+function PrintRecipe (props: RecipeInfoProps){
     return <>
-        <header>
-            <h2>{recipe.name}</h2>
-        </header>
-        <img src={recipe.image}/>
-        <a href={"www.youtube.de"}>Youtube</a>
-        <h3>Zutaten</h3>
-        <ul>
-            {recipe.ingridients.map((zutat:string) => (
-                <li>{zutat}</li>
-            ))}
-        </ul>
-        <p>
-            {recipe.instruction}
-        </p>
-        <blockquote>
-            <p>{recipe.quote}</p>
-            <footer>- von {recipe.customer}</footer>
-        </blockquote>
+        <article className={props.className}>
+            <header>
+                <h2>{props.name}</h2>
+            </header>
+            <img src={props.image}/>
+            <a href={"www.youtube.de"}>Youtube</a>
+            <h3>Zutaten</h3>
+            <IngridientList ingredients={props.ingredients}/>
+            <p>
+                {props.instruction}
+            </p>
+            <blockquote>
+                <p>{props.quote}</p>
+                <footer>- von {props.customer}</footer>
+            </blockquote>
+        </article>
     </>
 }
 
